@@ -13,11 +13,12 @@ servers=[
   :box => "ubuntu/precise64",
   :ram => 512,
   :cpu => 1,
-  :provisions => ["fixScripts/exercise5-fix_server2.sh","fixScripts/exercise4-fix_server2.sh"]
+  :provisions => ["fixScripts/exercise4-fix_server2.sh", "fixScripts/exercise5-fix_server2.sh",]
 }
 ]
 
 Vagrant.configure(2) do |config|
+  config.ssh.insert_key = false
   servers.each do |machine|
     config.vm.define machine[:hostname] do |node|
         machine [:provisions].each do |script|
